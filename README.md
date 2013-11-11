@@ -68,6 +68,26 @@ defmodule ExCheck.Sample do
 end
 ```
 
+#### Run
+
+```Shell
+$ mix test test/sample_test.exs
+....................................................................................................
+Ran 100 tests
+....x.....xx.x.xxxx.xxxx...xxxx...xx.xxxx...x.....x.x.xx...xx.x...xxx..x...xx..xxxxx..xxxx...x.x.xxx.
+Ran 50 tests
+.....................................................................................................
+Ran 100 tests
+.....................................................................................................
+Ran 100 tests
+.....................................................................................................
+Ran 100 tests
+.
+
+Finished in 0.2 seconds (0.1s on load, 0.03s on tests)
+5 tests, 0 failures
+```
+
 ### Notes
 
 - It's a trial implementation, and has limited functionalities yet.
