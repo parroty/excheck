@@ -4,7 +4,7 @@ defmodule ExCheck do
   add 'use ExCheck' in the ExUnit test files.
   """
 
-  defmacro __using__(opts // []) do
+  defmacro __using__(_opts // []) do
     quote do
       import ExCheck.Predicate
       import ExCheck.Statement
