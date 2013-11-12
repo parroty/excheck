@@ -21,20 +21,6 @@ defmodule ExCheckTest do
     end
   end
 
-  property :implies do
-    for_all(x, int) do
-      implies(x >= 0) do
-        x >= 0
-      end
-    end
-  end
-
-  property :such_that do
-    for_all({x, y}, such_that({xx, yy}, {int, int}, xx < yy)) do
-      x < y
-    end
-  end
-
   # generators
   property :boolean do
     for_all(b, bool) do is_boolean(b) end

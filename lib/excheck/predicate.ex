@@ -34,6 +34,27 @@ defmodule ExCheck.Predicate do
   end
 
   @doc """
+  Specify the block to be executed with spawn_link
+  """
+  defmacro trap_exit([do: property]) do
+    quote do
+      { :"prop:trapexit", fn() -> unquote(property) end,
+        unquote(stringify(property)) }
+    end
+  end
+
+  @doc """
+  Specify the block to be executed with timeout
+  """
+  defmacro timeout(limit, [do: property]) do
+    quote do
+      { :"prop:timeout", unquote(limit),
+        fn() -> unquote(property) end, unquote(stringify(property)) }
+    end
+  end
+
+
+  @doc """
   Generate samples which satisfies the predicate.
   """
   defmacro such_that(x, generator, predicate) do
