@@ -17,10 +17,10 @@ defmodule ExCheck.Statement do
   end
 
   @doc """
-  Test the property methods defined in the specified module.
-  The name of the methods need to be prefixed with 'prop_'.
+  Check the property defined in the specified target (module or method).
+  If the module name is specified, check all the methods prefixed with 'prop_'.
   """
-  def check(module) do
-    :triq.check(module)
+  def check(target) do
+    :triq.check(target)
   end
 end
