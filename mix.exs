@@ -5,7 +5,9 @@ defmodule ExCheck.Mixfile do
     [ app: :excheck,
       version: "0.0.1",
       elixir: ">= 0.10.3",
-      deps: deps(Mix.env) ]
+      deps: deps(Mix.env),
+      test_coverage: [tool: ExCoveralls]
+    ]
   end
 
   # Configuration for the OTP application
@@ -20,7 +22,9 @@ defmodule ExCheck.Mixfile do
   end
 
   def deps(:dev) do
-    deps(:prod)
+    deps(:prod) ++ [
+      {:excoveralls, github: "parroty/excoveralls"}
+    ]
   end
 
   def deps(:prod) do
