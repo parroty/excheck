@@ -11,4 +11,12 @@ defmodule ExCheck do
       import :triq_dom, only: :functions  # Import generators defined in :triq
     end
   end
+
+  @doc """
+  Check the property defined in the specified target (module or method).
+  If the module name is specified, check all the methods prefixed with 'prop_'.
+  """
+  def check(target) do
+    :triq.check(target)
+  end
 end

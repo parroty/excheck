@@ -3,6 +3,6 @@ defmodule ExCheck.SampleTest do
   use ExCheck
 
   test "verify sample property" do
-    assert ExCheck.Statement.check(ExCheck.Sample)
+    assert ExCheck.check(ExCheck.Sample)
   end
 end

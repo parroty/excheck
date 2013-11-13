@@ -39,13 +39,13 @@ defmodule ExCheck.PredicateTest do
 
   test "always fail property" do
     assert capture_io(fn ->
-      ExCheck.Statement.check(prop_always_fail)
+      ExCheck.check(prop_always_fail)
     end) =~ "Failed value X ="
   end
 
   test "sometimes fail property" do
     assert capture_io(fn ->
-      ExCheck.Statement.check(prop_sometimes_fail)
+      ExCheck.check(prop_sometimes_fail)
     end) =~ "Failed value L ="
   end
 
@@ -68,7 +68,7 @@ defmodule ExCheck.PredicateTest do
 
   test "timeout fail property" do
     assert capture_io(fn ->
-      ExCheck.Statement.check(prop_timeout)
+      ExCheck.check(prop_timeout)
     end) =~ "Failed with: {timeout,100}"
   end
 end
