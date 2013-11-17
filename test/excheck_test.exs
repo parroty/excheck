@@ -31,8 +31,20 @@ defmodule ExCheckTest do
   property :binary do
     for_all(b, binary) do is_binary(b) end
   end
+  property :real do
+    for_all(r, real) do is_float(r) end
+  end
+  property :byte do
+    for_all(b, byte) do is_integer(b) end
+  end
   property :tuple do
     for_all(t, tuple(int)) do is_tuple(t) end
+  end
+  property :char do
+    for_all(c, char) do is_integer(c) end
+  end
+  property :unicode_char do
+    for_all(c, unicode_char) do is_integer(c) end
   end
   property :oneof do
     for_all(v, oneof([1, 2])) do
