@@ -47,4 +47,17 @@ defmodule ExCheckTest do
   property :pos_integer do
     for_all(v, pos_integer) do v > 0 end
   end
+
+  test :sample_boolean do
+    Enum.each(sample(bool), &(assert is_boolean(&1)))
+  end
+
+  test :sample_integer do
+    Enum.each(sample(int), &(assert is_integer(&1)))
+  end
+
+  test :pick_integer do
+    {_, value} = pick(int, 1)
+    assert value >= -5 and value <= 5
+  end
 end
