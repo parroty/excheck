@@ -5,6 +5,20 @@ defmodule ExCheck.Predicate do
 
   @doc """
   Verify the property is hold for all the generated samples.
+    > for_all x in int, do: x * x >= 0
+  """
+  defmacro for_all({:in, _, [x, generator]}, [do: property]) do
+    quote do
+      { :"prop:forall", unquote(generator), unquote(stringify(x)),
+        fn(unquote(x)) -> unquote(property) end, unquote(stringify(property)) }
+    end
+  end
+
+  @doc """
+  Verify the property is hold for all the generated samples.
+    > for_all(x, int) do
+    >   x * x >= 0
+    > end
   """
   defmacro for_all(x, generator, [do: property]) do
     quote do

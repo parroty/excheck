@@ -3,61 +3,55 @@ defmodule ExCheckTest do
   use ExCheck
 
   property :reverse do
-    for_all({xs, ys}, {list(int), list(int)}) do
+    for_all {xs, ys} in {list(int), list(int)} do
       Enum.reverse(Enum.concat(xs, ys)) ==
         Enum.concat(Enum.reverse(ys), Enum.reverse(xs))
     end
   end
 
   property :list_counts do
-    for_all(xs, list(int)) do
-      Enum.count(xs) >= 0
-    end
+    for_all xs in list(int), do: Enum.count(xs) >= 0
   end
 
   property :square do
-    for_all(x, int) do
-      x * x >= 0
-    end
+    for_all x in int, do: x * x >= 0
   end
 
   # generators
   property :boolean do
-    for_all(b, bool) do is_boolean(b) end
+    for_all b in bool, do: is_boolean(b)
   end
   property :atom do
-    for_all(a, atom) do is_atom(a) end
+    for_all a in atom, do: is_atom(a)
   end
   property :binary do
-    for_all(b, binary) do is_binary(b) end
+    for_all b in binary, do: is_binary(b)
   end
   property :real do
-    for_all(r, real) do is_float(r) end
+    for_all r in real, do: is_float(r)
   end
   property :byte do
-    for_all(b, byte) do is_integer(b) end
+    for_all b in byte, do: is_integer(b)
   end
   property :tuple do
-    for_all(t, tuple(int)) do is_tuple(t) end
+    for_all t in tuple(int), do: is_tuple(t)
   end
   property :char do
-    for_all(c, char) do is_integer(c) end
+    for_all c in char, do: is_integer(c)
   end
   property :unicode_char do
-    for_all(c, unicode_char) do is_integer(c) end
+    for_all u in unicode_char, do: is_integer(u)
   end
   property :oneof do
-    for_all(v, oneof([1, 2])) do
-      v == 1 or v == 2
-    end
+    for_all v in oneof([1, 2]), do: v == 1 or v == 2
   end
   property :frequency do
-    for_all(v, frequency([{10, :a}, {1, :b}])) do
+    for_all v in frequency([{10, :a}, {1, :b}]) do
       v == :a or v == :b
     end
   end
   property :pos_integer do
-    for_all(v, pos_integer) do v > 0 end
+    for_all v in pos_integer, do: v > 0
   end
 
   test :sample_boolean do
