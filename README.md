@@ -14,27 +14,25 @@ defmodule ExCheck.SampleTest do
   alias ExCheck.Sample
 
   property :square do
-    for_all(x, int) do
-      x * x >= 0
-    end
+    for_all x in int, do: x * x >= 0
   end
 
   property :implies do
-    for_all(x, int) do
-      implies(x >= 0) do
+    for_all x in int do
+      implies x >= 0 do
         x >= 0
       end
     end
   end
 
   property :such_that do
-    for_all({x, y}, such_that({xx, yy}, {int, int}, xx < yy)) do
+    for_all {x, y} in such_that({xx, yy} in {int, int} when xx < yy) do
       x < y
     end
   end
 
   property :concat_list do
-    for_all({xs, ys}, {list(int), list(int)}) do
+    for_all {xs, ys} in {list(int), list(int)} do
       Enum.count(Sample.concat(xs, ys)) == Enum.count(xs) + Enum.count(ys)
     end
   end
