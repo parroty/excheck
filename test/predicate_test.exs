@@ -4,21 +4,21 @@ defmodule ExCheck.PredicateTest do
   import ExUnit.CaptureIO
 
   property :implies do
-    for_all(x, int) do
-      implies(x >= 0) do
+    for_all x in int do
+      implies x >= 0 do
         x >= 0
       end
     end
   end
 
   property :such_that do
-    for_all({x, y}, such_that({xx, yy}, {int, int}, xx < yy)) do
+    for_all {x, y} in such_that({xx, yy}, {int, int}, xx < yy) do
       x < y
     end
   end
 
   def prop_always_fail do
-    for_all({x}, {int}) do
+    for_all x in int do
       when_fail(:io.format("Failed value X = ~p", [x])) do
         false
       end
@@ -26,9 +26,9 @@ defmodule ExCheck.PredicateTest do
   end
 
   def prop_sometimes_fail do
-    for_all({l}, {list(int)}) do
-      implies(l != []) do
-        for_all({i}, {elements(l)}) do
+    for_all l in list(int) do
+      implies l != [] do
+        for_all i in elements(l) do
           when_fail(:io.format("Failed value L = ~p, I = ~p~n", [l,i])) do
             :lists.member(i, :lists.delete(i, l)) == false
           end
@@ -50,7 +50,7 @@ defmodule ExCheck.PredicateTest do
   end
 
   property :trapexit do
-    for_all({xs, ys}, {list(int), list(int)}) do
+    for_all {xs, ys} in {list(int), list(int)} do
       trap_exit do
         Enum.reverse(Enum.concat(xs, ys)) ==
           Enum.concat(Enum.reverse(ys), Enum.reverse(xs))
@@ -59,7 +59,7 @@ defmodule ExCheck.PredicateTest do
   end
 
   def prop_timeout do
-    for_all(x, oneof([50, 150])) do
+    for_all x in oneof([50, 150]) do
       timeout(100) do
         :timer.sleep(x) == :ok
       end
