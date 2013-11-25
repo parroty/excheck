@@ -38,7 +38,7 @@ defmodule ExCheck.SampleTest do
   end
 
   property :push_list do
-    for_all({x, y}, {int, list(int)}) do
+    for_all {x, y} in {int, list(int)} do
       result = Sample.push(x, y)
       Enum.first(result) == x and Enum.count(result) == Enum.count(y) + 1
     end
