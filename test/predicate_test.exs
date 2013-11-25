@@ -12,7 +12,7 @@ defmodule ExCheck.PredicateTest do
   end
 
   property :such_that do
-    for_all {x, y} in such_that({xx, yy}, {int, int}, xx < yy) do
+    for_all {x, y} in such_that({xx, yy} in {int, int} when xx < yy) do
       x < y
     end
   end

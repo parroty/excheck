@@ -71,7 +71,7 @@ defmodule ExCheck.Predicate do
   @doc """
   Generate samples which satisfies the predicate.
   """
-  defmacro such_that(x, generator, predicate) do
+  defmacro such_that({:when, _, [{:in, _, [x, generator]}, predicate]}) do
     quote do
       :triq_dom.suchthat(
         unquote(generator), fn(unquote(x)) -> unquote(predicate) end)
