@@ -24,7 +24,7 @@ defmodule ExCheck.Sample do
   def prop_push_list do
     for_all({x, y}, {int, list(int)}) do
       result = push(x, y)
-      Enum.first(result) == x and Enum.count(result) == Enum.count(y) + 1
+      Enum.at(result, 0) == x and Enum.count(result) == Enum.count(y) + 1
     end
   end
 end
