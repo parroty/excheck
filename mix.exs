@@ -3,8 +3,8 @@ defmodule ExCheck.Mixfile do
 
   def project do
     [ app: :excheck,
-      version: "0.0.1",
-      elixir: ">= 0.10.3",
+      version: "0.1.0",
+      elixir: "~> 0.13.1",
       deps: deps(Mix.env),
       test_coverage: [tool: ExCoveralls]
     ]
@@ -23,7 +23,7 @@ defmodule ExCheck.Mixfile do
 
   def deps(:dev) do
     deps(:prod) ++ [
-      {:excoveralls, github: "parroty/excoveralls"}
+      {:excoveralls, "~> 0.2.0"}
     ]
   end
 

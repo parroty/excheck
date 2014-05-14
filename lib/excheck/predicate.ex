@@ -79,6 +79,6 @@ defmodule ExCheck.Predicate do
   end
 
   defp stringify(tree) do
-    tree |> Macro.to_string |> String.to_char_list!
+    tree |> Macro.to_string |> List.from_char_data!
   end
 end
