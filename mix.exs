@@ -6,6 +6,8 @@ defmodule ExCheck.Mixfile do
       version: "0.1.0",
       elixir: "~> 0.13.1",
       deps: deps(Mix.env),
+      description: description,
+      package: package,
       test_coverage: [tool: ExCoveralls]
     ]
   end
@@ -31,5 +33,17 @@ defmodule ExCheck.Mixfile do
     [
       {:triq, github: "krestenkrab/triq"}
     ]
+  end
+
+  defp description do
+    """
+    Property-based testing library for Elixir (QuickCheck style).
+    """
+  end
+
+  defp package do
+    [ contributors: ["parroty"],
+      licenses: ["MIT"],
+      links: [ { "GitHub", "https://github.com/parroty/excheck" } ] ]
   end
 end
