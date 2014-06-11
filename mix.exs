@@ -4,7 +4,7 @@ defmodule ExCheck.Mixfile do
   def project do
     [ app: :excheck,
       version: "0.1.1",
-      elixir: "~> 0.13.3",
+      elixir: "~> 0.14.0",
       deps: deps(Mix.env),
       description: description,
       package: package,
@@ -25,7 +25,7 @@ defmodule ExCheck.Mixfile do
 
   def deps(:dev) do
     deps(:prod) ++ [
-      {:excoveralls, "~> 0.2.0"}
+      {:excoveralls, "~> 0.2"}
     ]
   end
 
