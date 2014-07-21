@@ -3,7 +3,7 @@ defmodule ExCheck.Mixfile do
 
   def project do
     [ app: :excheck,
-      version: "0.1.3",
+      version: "0.1.4",
       elixir: "~> 0.14.0",
       deps: deps,
       description: description,
@@ -21,7 +21,7 @@ defmodule ExCheck.Mixfile do
   # { :foobar, "~> 0.1", git: "https://github.com/elixir-lang/foobar.git" }
   def deps do
     [
-      {:excoveralls, "~> 0.2", only: :test},
+      {:excoveralls, "~> 0.3", only: :dev},
       {:triq, github: "krestenkrab/triq"}
     ]
   end
