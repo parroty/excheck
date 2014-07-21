@@ -5,7 +5,7 @@ defmodule ExCheck.Mixfile do
     [ app: :excheck,
       version: "0.1.2",
       elixir: "~> 0.14.0",
-      deps: deps(Mix.env),
+      deps: deps,
       description: description,
       package: package,
       test_coverage: [tool: ExCoveralls]
@@ -19,18 +19,9 @@ defmodule ExCheck.Mixfile do
 
   # Returns the list of dependencies in the format:
   # { :foobar, "~> 0.1", git: "https://github.com/elixir-lang/foobar.git" }
-  def deps(:test) do
-    deps(:dev)
-  end
-
-  def deps(:dev) do
-    deps(:prod) ++ [
-      {:excoveralls, "~> 0.2"}
-    ]
-  end
-
-  def deps(:prod) do
+  def deps do
     [
+      {:excoveralls, "~> 0.2", only: :test},
       {:triq, github: "krestenkrab/triq"}
     ]
   end
