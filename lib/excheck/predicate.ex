@@ -1,6 +1,6 @@
 defmodule ExCheck.Predicate do
   @moduledoc """
-  Provides macros for predicates for tests.
+  Provides macros for predicates.
   """
 
   @doc """

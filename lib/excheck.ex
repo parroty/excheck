@@ -8,7 +8,7 @@ defmodule ExCheck do
     quote do
       import ExCheck.Predicate
       import ExCheck.Statement
-      import :triq_dom, only: :functions  # Import generators defined in :triq.
+      use ExCheck.Generator
     end
   end
 

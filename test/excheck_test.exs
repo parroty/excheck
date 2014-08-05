@@ -54,6 +54,10 @@ defmodule ExCheckTest do
     for_all v in pos_integer, do: v > 0
   end
 
+  property :number do
+    for_all v in number, do: is_integer(v) or is_float(v)
+  end
+
   test :sample_boolean do
     Enum.each(sample(bool), &(assert is_boolean(&1)))
   end
