@@ -5,7 +5,7 @@ defmodule ExCheck.Statement do
   @iteration_count 100
 
   @doc """
-  Generate property method and ExUnit tests
+  Generate property method and ExUnit tests.
   """
   defmacro property(message, [do: contents]) do
     contents = Macro.escape(contents, unquote: true)

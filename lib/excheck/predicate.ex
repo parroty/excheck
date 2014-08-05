@@ -1,6 +1,6 @@
 defmodule ExCheck.Predicate do
   @moduledoc """
-  Provides macros for predicates for tests
+  Provides macros for predicates for tests.
   """
 
   @doc """
@@ -58,7 +58,7 @@ defmodule ExCheck.Predicate do
   end
 
   @doc """
-  Specify the block to be executed with timeout
+  Specify the block to be executed with timeout.
   """
   defmacro timeout(limit, [do: property]) do
     quote do
