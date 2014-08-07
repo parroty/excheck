@@ -53,6 +53,9 @@ defmodule ExCheckTest do
   property :pos_integer do
     for_all v in pos_integer, do: v > 0
   end
+  property :integer_min_max do
+    for_all v in int(10000, 20000), do: v >= 10000 and v <= 20000
+  end
 
   property :number do
     for_all v in number, do: is_integer(v) or is_float(v)
@@ -67,7 +70,13 @@ defmodule ExCheckTest do
   end
 
   test :pick_integer do
-    {_, value} = pick(int, 1)
+    {_, value} = pick(int, 10)
     assert value >= -5 and value <= 5
   end
+
+  test :pick_tuple do
+    {_, {v1, v2}} = pick({int, int}, 10)
+    assert is_integer(v1) and is_integer(v2)
+  end
+
 end
