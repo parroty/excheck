@@ -12,7 +12,7 @@ defmodule ExCheck.Statement do
     quote bind_quoted: binding do
       def unquote(:"prop_#{message}")(), do: unquote(contents)
       test :"#{message}_property" do
-        assert :triq.check(unquote(:"prop_#{message}")())
+        assert ExCheck.check(unquote(:"prop_#{message}")())
       end
     end
   end

@@ -17,6 +17,15 @@ defmodule ExCheck do
   If the module name is specified, check all the methods prefixed with 'prop_'.
   """
   def check(target) do
-    :triq.check(target)
+    case :triq.check(target) do
+      true ->
+        true
+      false ->
+        false
+      {:EXIT, %{__struct__: type, message: msg}} ->
+        raise %ExCheck.Error{message: "error raised: (#{type}) #{msg}"}
+      error ->
+        raise %ExCheck.Error{message: "check failed: #{inspect error}"}
+    end
   end
 end
