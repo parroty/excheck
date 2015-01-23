@@ -57,6 +57,13 @@ defmodule ExCheckTest do
     for_all v in int(10000, 20000), do: v >= 10000 and v <= 20000
   end
 
+  property :float_min_max do
+    for_all int_value in int(10001, 20000) do
+      float_value = int_value / 10000
+      Float.ceil(float_value) == 2
+    end
+  end
+
   property :number do
     for_all v in number, do: is_integer(v) or is_float(v)
   end
