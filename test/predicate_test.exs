@@ -77,7 +77,7 @@ defmodule ExCheck.PredicateTest do
   end
 
   def prop_exception do
-    for_all(x, int) do
+    for_all(_x, int) do
       raise %SampleError{message: "sample message"}
     end
   end
@@ -93,7 +93,7 @@ defmodule ExCheck.PredicateTest do
       try do
         abs(10 / x) <= 10
       rescue
-        e in ArithmeticError -> true
+        _e in ArithmeticError -> true
       end
     end
   end
