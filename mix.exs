@@ -35,6 +35,6 @@ defmodule ExCheck.Mixfile do
   defp package do
     [ contributors: ["parroty"],
       licenses: ["MIT"],
-      links: [ { "GitHub", "https://github.com/parroty/excheck" } ] ]
+      links: %{"GitHub" => "https://github.com/parroty/excheck"} ]
   end
 end
