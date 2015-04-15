@@ -22,6 +22,8 @@ defmodule ExCheck do
         true
       false ->
         false
+      {:EXIT, %{__struct__: ExUnit.AssertionError} = error} ->
+        raise error
       {:EXIT, %{__struct__: type, message: msg}} ->
         raise %ExCheck.Error{message: "error raised: (#{type}) #{msg}"}
       error ->
