@@ -4,7 +4,21 @@ Property-based testing for Elixir (QuickCheck style).
 It uses Erlang's [triq](https://github.com/krestenkrab/triq) library for underlying checking engine, and ExCheck's modules provide wrapper macros for ExUnit tests.
 
 
+### Installation
+Add ExCheck and triq to your project's dependencies in mix.exs.
+
+```Elixir
+  defp deps do
+    [
+      {:excheck, "~> 0.2", only: :test},
+      {:triq, github: "krestenkrab/triq", only: :test}
+    ]
+  end
+```
+
 ### Usage
+The following is an testing example. `ExCheck.SampleTest` is the testing code for `ExCheck.Sample`.
+
 #### Test
 
 ```Elixir
@@ -69,7 +83,7 @@ end
 #### Run
 
 ```Shell
-$ mix test test/sample_test.exs
+$ MIX_ENV=test mix test test/sample_test.exs
 .............................................................................................
 Ran 100 tests
 ....x.....xx.x.xxxx.xxxx...xxxx...xx.xxxx...x.....x.x.xx...xx.x...xxx..x...xx..xxxxx..xxxx...
