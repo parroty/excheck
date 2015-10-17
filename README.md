@@ -5,7 +5,7 @@ It uses Erlang's [triq](https://github.com/krestenkrab/triq) library for underly
 
 
 ### Installation
-Add ExCheck and triq to your project's dependencies in mix.exs.
+First add ExCheck and triq to your project's dependencies in mix.exs.
 
 ```Elixir
   defp deps do
@@ -14,6 +14,14 @@ Add ExCheck and triq to your project's dependencies in mix.exs.
       {:triq, github: "krestenkrab/triq", only: :test}
     ]
   end
+```
+
+and add the following to test_helpers.exs:
+
+```Elixir
+ExCheck.start
+# ... other helper functions
+ExUnit.start
 ```
 
 ### Usage

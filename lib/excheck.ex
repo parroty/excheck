@@ -22,7 +22,10 @@ defmodule ExCheck do
   end
 
   @doc "Starts the ExCheck application."
-  def start, do: Application.ensure_all_started(:excheck)
+  def start do
+    ExUnit.configure(formatters: [ExCheck.Formatter])
+    Application.ensure_all_started(:excheck)
+  end
 
   @doc "Starts the ExCheck application."
   def start(_app, _type) do
