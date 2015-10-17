@@ -16,6 +16,17 @@ Add ExCheck and triq to your project's dependencies in mix.exs.
   end
 ```
 
+You can also specify the amount of tests that you want to run for each property
+by adding the following to your config.exs:
+
+```Elixir
+use Mix.Config
+# import "#{Mix.env}.exs"  # If you want to specify different amount for each environment
+
+# And then in this file (or different amount in each config file):
+config :excheck, :number_iterations, 200
+```
+
 ### Usage
 The following is an testing example. `ExCheck.SampleTest` is the testing code for `ExCheck.Sample`.
 
