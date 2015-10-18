@@ -35,6 +35,7 @@ use Mix.Config
 # And then in this file (or different amount in each config file):
 config :excheck, :number_iterations, 200
 ```
+**Note:** This setting is not effective for `ExCheck.check(module_name)` at the moment (refer to #13).
 
 ### Usage
 The following is an testing example. `ExCheck.SampleTest` is the testing code for `ExCheck.Sample`.
