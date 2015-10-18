@@ -1,4 +1,6 @@
 defmodule ExCheck do
+  use Application
+
   @moduledoc """
   Provides QuickCheck style testing feature.
   add 'use ExCheck' in the ExUnit test files.
@@ -11,7 +13,29 @@ defmodule ExCheck do
       import ExCheck.Predicate
       import ExCheck.Statement
       use ExCheck.Generator
+      use ExUnit.Callbacks
+
+      setup(context) do
+        # Redirect all output first to IOServer process before test starts
+        ExCheck.IOServer.redirect(self)
+        {:ok, context}
+      end
     end
+  end
+
+  @doc "Starts the ExCheck application."
+  def start do
+    ExUnit.configure(formatters: [ExCheck.Formatter])
+    Application.ensure_all_started(:excheck)
+  end
+
+  @doc "Starts the ExCheck application."
+  def start(_app, _type) do
+    import Supervisor.Spec, warn: false
+    children = [
+      worker(ExCheck.IOServer, [])
+    ]
+    Supervisor.start_link(children, strategy: :one_for_one)
   end
 
   @doc """
