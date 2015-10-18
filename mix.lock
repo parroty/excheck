@@ -7,4 +7,4 @@
   "jsex": {:package, "2.0.0"},
   "jsx": {:hex, :jsx, "2.4.0"},
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.1"},
-  "triq": {:git, "git://github.com/krestenkrab/triq.git", "15d9ca06f88b9944bb744ccb234cef205bc6d1b3", []}}
+  "triq": {:git, "https://github.com/krestenkrab/triq.git", "2fe1529bc1460e0a8cd356ef7a8fda9e43120445", []}}

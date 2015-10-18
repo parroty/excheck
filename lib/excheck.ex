@@ -19,7 +19,7 @@ defmodule ExCheck do
   If the module name is specified, check all the methods prefixed with 'prop_'.
   """
   def check(target) do
-    case :triq.check(target, @iterations) do
+    case do_check(target, @iterations) do
       true ->
         true
       false ->
@@ -31,5 +31,13 @@ defmodule ExCheck do
       error ->
         raise %ExCheck.Error{message: "check failed: #{inspect error}"}
     end
+  end
+
+  defp do_check(target, iterations) when is_atom(target) do
+    :triq.module(target, iterations)
+  end
+
+  defp do_check(target, iterations) do
+    :triq.check(target, iterations)
   end
 end
