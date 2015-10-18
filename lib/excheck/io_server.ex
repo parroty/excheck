@@ -69,23 +69,44 @@ defmodule ExCheck.IOServer do
     response = ErrAgent.errors(agent)
     {:reply, response, state}
   end
+  def handle_call(_msg, _from, state) do
+    {:reply, :unknown_msg, state}
+  end
 
   @doc false
   def handle_info({:io_request, from, ref, 
-                  {:put_chars, :unicode, :io_lib, :format, [msg, value_list]}}, state) do
+                  {:put_chars, _encoding, :io_lib, :format, [msg, value_list]}}, state) do
     # Receive all IO requests here
     new_state = handle_output(msg, value_list, from, state)
     from |> send {:io_reply, ref, :ok}
     {:noreply, new_state}
   end
   def handle_info({:io_request, from, ref, 
-                  {:put_chars, :unicode, msg}}, state) do
+                  {:put_chars, :io_lib, :format, [msg, value_list]}}, state) do
+    # Receive all IO requests here
+    new_state = handle_output(msg, value_list, from, state)
+    from |> send {:io_reply, ref, :ok}
+    {:noreply, new_state}
+  end
+  def handle_info({:io_request, from, ref, 
+                  {:put_chars, _encoding, msg}}, state) do
     # Receive all IO requests here
     new_state = handle_output(msg, [], from, state)
     from |> send {:io_reply, ref, :ok}
     {:noreply, new_state}
   end
-  # TODO need more cases here to handle all forms of IO?
+  def handle_info({:io_request, from, ref, 
+                  {:put_chars, msg}}, state) do
+    # Receive all IO requests here
+    new_state = handle_output(msg, [], from, state)
+    from |> send {:io_reply, ref, :ok}
+    {:noreply, new_state}
+  end
+  def handle_info(_msg, state) do
+    # Unsupported message -> discarded
+    # This means reading input is impossible with this IOServer.
+    {:noreply, state}   
+  end
 
   # Helper functions
 
