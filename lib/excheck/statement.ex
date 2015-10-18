@@ -2,7 +2,7 @@ defmodule ExCheck.Statement do
   @moduledoc """
   Provides macros for test statements.
   """
-  @iteration_count 100
+  @iteration_count Application.get_env(:excheck, :number_iterations, 100)
 
   @doc """
   Generate property method and ExUnit tests.
