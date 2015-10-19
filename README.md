@@ -10,7 +10,7 @@ First add ExCheck and triq to your project's dependencies in mix.exs.
 ```Elixir
   defp deps do
     [
-      {:excheck, "~> 0.2", only: :test},
+      {:excheck, "~> 0.3", only: :test},
       {:triq, github: "krestenkrab/triq", only: :test}
     ]
   end
