@@ -1,4 +1,4 @@
-# ExCheck [![Build Status](https://secure.travis-ci.org/parroty/excheck.png?branch=master "Build Status")](http://travis-ci.org/parroty/excheck)
+# ExCheck [![Build Status](https://secure.travis-ci.org/parroty/excheck.png?branch=master "Build Status")](http://travis-ci.org/parroty/excheck) [![Coverage Status](http://img.shields.io/coveralls/parroty/excheck.svg)](https://coveralls.io/r/parroty/excheck)
 
 Property-based testing for Elixir (QuickCheck style).
 It uses Erlang's [triq](https://github.com/krestenkrab/triq) library for underlying checking engine, and ExCheck's modules provide wrapper macros for ExUnit tests.

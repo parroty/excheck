@@ -1,3 +1,8 @@
+0.3.1
+------
+#### Changes
+* Update dependencies.
+
 0.3.0
 ------
 #### Enhancements
