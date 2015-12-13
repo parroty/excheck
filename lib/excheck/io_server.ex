@@ -26,17 +26,17 @@ defmodule ExCheck.IOServer do
 
   @doc "Redirects IO output from pid to this server."
   def redirect(pid) do
-    @server |> GenServer.call {:redirect, pid}
+    @server |> GenServer.call({:redirect, pid})
   end
 
   @doc "Get the total amount of property tests that ran so far."
   def total_tests do
-    @server |> GenServer.call :total_tests
+    @server |> GenServer.call(:total_tests)
   end
 
   @doc "Returns all error loggings from property tests"
   def errors do
-    @server |> GenServer.call :errors
+    @server |> GenServer.call(:errors)
   end
 
   # Callbacks
@@ -78,28 +78,28 @@ defmodule ExCheck.IOServer do
                   {:put_chars, _encoding, :io_lib, :format, [msg, value_list]}}, state) do
     # Receive all IO requests here
     new_state = handle_output(msg, value_list, from, state)
-    from |> send {:io_reply, ref, :ok}
+    from |> send({:io_reply, ref, :ok})
     {:noreply, new_state}
   end
   def handle_info({:io_request, from, ref, 
                   {:put_chars, :io_lib, :format, [msg, value_list]}}, state) do
     # Receive all IO requests here
     new_state = handle_output(msg, value_list, from, state)
-    from |> send {:io_reply, ref, :ok}
+    from |> send({:io_reply, ref, :ok})
     {:noreply, new_state}
   end
   def handle_info({:io_request, from, ref, 
                   {:put_chars, _encoding, msg}}, state) do
     # Receive all IO requests here
     new_state = handle_output(msg, [], from, state)
-    from |> send {:io_reply, ref, :ok}
+    from |> send({:io_reply, ref, :ok})
     {:noreply, new_state}
   end
   def handle_info({:io_request, from, ref, 
                   {:put_chars, msg}}, state) do
     # Receive all IO requests here
     new_state = handle_output(msg, [], from, state)
-    from |> send {:io_reply, ref, :ok}
+    from |> send({:io_reply, ref, :ok})
     {:noreply, new_state}
   end
   def handle_info(_msg, state) do

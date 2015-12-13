@@ -10,19 +10,19 @@ defmodule ExCheck.ErrorAgent do
 
   @doc "Saves an error message."
   def add_error(agent, pid, msg) do
-    agent |> Agent.update fn(state) ->
+    agent |> Agent.update(fn(state) ->
       error_msgs = Map.get(state, pid, [])
       Map.put(state, pid, [msg | error_msgs])
-    end
+    end)
   end
 
   @doc "Return all errors stored by this agent."
   def errors(agent) do
-    agent |> Agent.get fn(state) ->
-      state |> Enum.map fn {_pid, errors} ->
+    agent |> Agent.get(fn(state) ->
+      state |> Enum.map(fn {_pid, errors} ->
         Enum.reverse(errors)  # Errors are stored in reverse
-      end
-    end
+      end)
+    end)
   end
 
   @doc "Stops the agent."
