@@ -24,8 +24,8 @@ defmodule ExCheck.Formatter do
   defp print_property_test_errors do
     ExCheck.IOServer.errors
     |> List.flatten
-    |> Enum.map fn({msg, value_list}) ->
+    |> Enum.map(fn({msg, value_list}) ->
       :io.format(msg, value_list)
-    end
+    end)
   end
 end
