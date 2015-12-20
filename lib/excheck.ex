@@ -42,8 +42,8 @@ defmodule ExCheck do
   Check the property defined in the specified target (module or method).
   If the module name is specified, check all the methods prefixed with 'prop_'.
   """
-  def check(target) do
-    case :triq.check(target, @iterations) do
+  def check(target, iterations \\ :nil) do
+    case :triq.check(target, iterations || @iterations) do
       true ->
         true
       false ->
