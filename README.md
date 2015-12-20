@@ -78,6 +78,12 @@ defmodule ExCheck.SampleTest do
       Enum.at(result, 0) == x and Enum.count(result) == Enum.count(y) + 1
     end
   end
+
+  # specify iteration count for running test
+  @tag iterations: 30
+  property :square_with_iteration_count do
+    for_all x in int, do: x * x >= 0
+  end
 end
 ```
 

@@ -1,3 +1,9 @@
+0.3.2
+------
+#### Enhancements
+* Allow ExUnit tags to set iterations per test (#16).
+   - Add ExCheck.check/2.
+
 0.3.1
 ------
 #### Changes
