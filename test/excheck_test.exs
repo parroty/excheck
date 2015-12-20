@@ -17,6 +17,12 @@ defmodule ExCheckTest do
     for_all x in int, do: x * x >= 0
   end
 
+  # specify iteration count for running test
+  @tag iterations: 30
+  property :square_with_iteration_parameter do
+    for_all x in int, do: x * x >= 0
+  end
+
   # generators
   property :boolean do
     for_all b in bool, do: is_boolean(b)
