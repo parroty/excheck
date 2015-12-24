@@ -16,7 +16,7 @@ First add ExCheck and triq to your project's dependencies in mix.exs.
   end
 ```
 
-and add the following to test_helpers.exs:
+and add the following to test_helper.exs:
 
 ```Elixir
 ExCheck.start
