@@ -92,4 +92,23 @@ defmodule ExCheckTest do
     assert is_integer(v1) and is_integer(v2)
   end
 
+  defmodule State, do: defstruct foo: :bar
+
+  def state do
+    domain(:state, fn(self, size) ->
+      {_, value} = pick(atom, size)
+      {self, %State{foo: value}}
+    end, fn
+    (self, size) ->
+      {_, value} = pick(atom, max(size-2, 0))
+      {self, %State{foo: value}}
+    end)
+  end
+
+  property :my_domain_gen do
+    for_all x in state do
+      is_atom(x.foo)
+    end
+  end
+
 end
