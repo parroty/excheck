@@ -2,7 +2,6 @@ defmodule ExCheck.Statement do
   @moduledoc """
   Provides macros for test statements.
   """
-  @iteration_count Application.get_env(:excheck, :number_iterations, 100)
 
   @doc """
   Generate property method and ExUnit tests.
@@ -36,7 +35,8 @@ defmodule ExCheck.Statement do
   It corresonds to triq#check_forall method.
   """
   def verify_property({:"prop:forall", domain, _syntax, fun, _body}) do
-    verify_property(0, @iteration_count, domain, fun, 0)
+    iterations = Application.get_env(:excheck, :number_iterations, 100)
+    verify_property(0, iterations, domain, fun, 0)
   end
 
   defp verify_property(n, n, _domain, _fun, _count), do: true
