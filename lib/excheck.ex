@@ -6,8 +6,6 @@ defmodule ExCheck do
   add 'use ExCheck' in the ExUnit test files.
   """
 
-  @iterations Application.get_env(:excheck, :number_iterations, 100)
-
   defmacro __using__(_opts \\ []) do
     quote do
       import ExCheck.Predicate
@@ -43,7 +41,8 @@ defmodule ExCheck do
   If the module name is specified, check all the methods prefixed with 'prop_'.
   """
   def check(target, iterations \\ :nil) do
-    case :triq.check(target, iterations || @iterations) do
+    default_iterations = Application.get_env(:excheck, :number_iterations, 100)
+    case :triq.check(target, iterations || default_iterations) do
       true ->
         true
       false ->
