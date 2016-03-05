@@ -1,3 +1,8 @@
+0.3.3
+------
+#### Changes
+* Resolve config at runtime rather than compile time (#22).
+
 0.3.2
 ------
 #### Enhancements
