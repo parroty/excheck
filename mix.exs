@@ -3,7 +3,7 @@ defmodule ExCheck.Mixfile do
 
   def project do
     [ app: :excheck,
-      version: "0.3.3",
+      version: "0.3.4",
       elixir: "~> 1.0",
       deps: deps,
       description: description,
