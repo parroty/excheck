@@ -5,6 +5,7 @@ It uses Erlang's [triq](https://github.com/krestenkrab/triq) library for underly
 
 
 ### Installation
+
 First add ExCheck and triq to your project's dependencies in mix.exs.
 
 ```Elixir
@@ -15,6 +16,7 @@ First add ExCheck and triq to your project's dependencies in mix.exs.
     ]
   end
 ```
+You need to have erlang-eunit installed in order to build triq.
 
 and add the following to test_helper.exs:
 
