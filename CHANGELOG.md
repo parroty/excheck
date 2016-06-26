@@ -1,3 +1,9 @@
+0.4.0
+------
+#### Changes
+* Update dependencies.
+* Fix formatter crash in elixir 1.3.0 (#25).
+
 0.3.3
 ------
 #### Changes
