@@ -22,7 +22,7 @@ defmodule ExCheck.Mixfile do
   # { :foobar, "~> 0.1", git: "https://github.com/elixir-lang/foobar.git" }
   def deps do
     [
-      {:excoveralls, "~> 0.4", only: :test},
+      {:excoveralls, "~> 0.5", only: :test},
       {:triq, github: "krestenkrab/triq"}
     ]
   end
