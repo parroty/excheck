@@ -1,3 +1,8 @@
+0.4.1
+------
+#### Changes
+* Update formatter to handle older Elixir versions (#27).
+
 0.4.0
 ------
 #### Changes
