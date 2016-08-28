@@ -1,3 +1,9 @@
+0.5.0
+------
+#### Changes
+* Updated triq dependency to point to more actively updated fork (#31).
+* Fix for running test errors on erlang 19.
+
 0.4.1
 ------
 #### Changes

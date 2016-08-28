@@ -48,11 +48,11 @@ defmodule ExCheck do
       false ->
         false
       {:EXIT, %{__struct__: ExUnit.AssertionError} = error} ->
-        raise error
+        raise ExUnit.AssertionError, message: error.message
       {:EXIT, %{__struct__: type, message: msg}} ->
-        raise %ExCheck.Error{message: "error raised: (#{type}) #{msg}"}
+        raise ExCheck.Error, message: "error raised: (#{type}) #{msg}"
       error ->
-        raise %ExCheck.Error{message: "check failed: #{inspect error}"}
+        raise ExCheck.Error, message: "check failed: #{inspect error}"
     end
   end
 end
