@@ -23,7 +23,7 @@ defmodule ExCheck.Mixfile do
   def deps do
     [
       {:excoveralls, "~> 0.5", only: :test},
-      {:triq, github: "krestenkrab/triq"}
+      {:triq, github: "triqng/triq"}
     ]
   end
 
