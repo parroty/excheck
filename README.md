@@ -3,6 +3,7 @@
 Property-based testing for Elixir (QuickCheck style).
 It uses Erlang's [triq](https://github.com/krestenkrab/triq) library for underlying checking engine, and ExCheck's modules provide wrapper macros for ExUnit tests.
 
+Note: as of v0.5, `triqng/triq` is applied for fixing the issue #30.
 
 ### Installation
 
@@ -11,8 +12,8 @@ First add ExCheck and triq to your project's dependencies in mix.exs.
 ```Elixir
   defp deps do
     [
-      {:excheck, "~> 0.3", only: :test},
-      {:triq, github: "krestenkrab/triq", only: :test}
+      {:excheck, "~> 0.5", only: :test},
+      {:triq, github: "triqng/triq", only: :test}
     ]
   end
 ```
