@@ -15,12 +15,14 @@ defmodule ExCheck.Sample do
   end
 
 
+  @doc false
   def prop_concat_list do
     for_all({xs, ys}, {list(int), list(int)}) do
       Enum.count(concat(xs, ys)) == Enum.count(xs) + Enum.count(ys)
     end
   end
 
+  @doc false
   def prop_push_list do
     for_all({x, y}, {int, list(int)}) do
       result = push(x, y)
