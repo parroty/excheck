@@ -3,6 +3,9 @@ defmodule ExCheck.Mixfile do
 
   def project do
     [ app: :excheck,
+      name: "ExCheck",
+      source_url: "https://github.com/parroty/ExCheck.git",
+      homepage_url: "https://github.com/parroty/ExCheck.git",
       version: "0.5.0",
       elixir: "~> 1.0",
       deps: deps,
@@ -23,7 +26,8 @@ defmodule ExCheck.Mixfile do
   def deps do
     [
       {:excoveralls, "~> 0.5", only: :test},
-      {:triq, github: "triqng/triq"}
+      {:triq, github: "triqng/triq"},
+      {:ex_doc, "~> 0.12", only: :dev}
     ]
   end
 
