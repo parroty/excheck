@@ -7,3 +7,6 @@ otp_release:
   - 18.1
 script:
   - "MIX_ENV=test mix do deps.get, compile, coveralls.travis"
+after_script:
+  - mix deps.get --only docs
+  - MIX_ENV=docs mix inch.report

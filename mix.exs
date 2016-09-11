@@ -27,7 +27,8 @@ defmodule ExCheck.Mixfile do
     [
       {:excoveralls, "~> 0.5", only: :test},
       {:triq, github: "triqng/triq"},
-      {:ex_doc, "~> 0.12", only: :dev}
+      {:ex_doc, "~> 0.12", only: :dev},
+      {:inch_ex, only: :docs}
     ]
   end
 
