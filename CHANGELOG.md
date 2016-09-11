@@ -1,3 +1,8 @@
+0.5.1
+------
+#### Enhancements
+* Add ex_doc for documentation (#32).
+
 0.5.0
 ------
 #### Changes
