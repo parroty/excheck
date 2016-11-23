@@ -34,6 +34,11 @@ defmodule ExCheck.IOServer do
     @server |> GenServer.call(:total_tests)
   end
 
+  @doc "Resets the test count."
+  def reset_test_count do
+    @server |> GenServer.call(:reset_test_count)
+  end
+
   @doc "Returns all error loggings from property tests"
   def errors do
     @server |> GenServer.call(:errors)
@@ -64,6 +69,10 @@ defmodule ExCheck.IOServer do
   end
   def handle_call(:total_tests, _from, state = %State{tests: tests}) do
     {:reply, tests, state}
+  end
+  def handle_call(:reset_test_count, _from, state = %State{agent: agent}) do
+    agent |> ErrAgent.clear_errors
+    {:reply, :ok, %State{state | tests: 0}}
   end
   def handle_call(:errors, _from, state = %State{agent: agent}) do
     response = ErrAgent.errors(agent)
