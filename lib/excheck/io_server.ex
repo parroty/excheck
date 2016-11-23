@@ -124,7 +124,7 @@ defmodule ExCheck.IOServer do
     state
   end
   def handle_output('~nRan ~p tests~n', [amount], _from, state) do
-    %State{state | tests: state.tests + amount}
+    %State{state | tests: state.tests + amount - 1}
   end
   def handle_output('Testing ~p' ++ _rest, _value_list, _from, state) do
     # Filter this statement out, output shows up in ExUnit anyway
