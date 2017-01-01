@@ -1,3 +1,8 @@
+0.5.2
+------
+#### Changes
+* Fix umbrella test count (#34).
+
 0.5.1
 ------
 #### Enhancements
