@@ -25,6 +25,11 @@ defmodule ExCheck.ErrorAgent do
     end)
   end
 
+  @doc "Clears all errors stored by this agent."
+  def clear_errors(agent) do
+    agent |> Agent.update(fn(_) -> %{} end)
+  end
+
   @doc "Stops the agent."
   def stop(agent) do
     Agent.stop(agent)
