@@ -15,7 +15,7 @@ defmodule ExCheck.Formatter do
   def handle_event(event = {:suite_finished, _run_us, _load_us}, config) do
     updated_tests_count = update_tests_counter(config.tests_counter)
     new_cfg = %{config | tests_counter: updated_tests_count}
-    print_property_test_errors
+    print_property_test_errors()
     CF.handle_event(event, new_cfg)
   end
   def handle_event(event, config) do

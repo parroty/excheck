@@ -8,7 +8,7 @@ defmodule ExCheck.Statement do
   """
   defmacro property(message, [do: contents]) do
     contents = Macro.escape(contents, unquote: true)
-    quote bind_quoted: binding do
+    quote bind_quoted: binding() do
       def unquote(:"prop_#{message}")(), do: unquote(contents)
       test :"#{message}_property", context do
         assert ExCheck.check(unquote(:"prop_#{message}")(), context[:iterations])
@@ -22,7 +22,7 @@ defmodule ExCheck.Statement do
   defmacro property(message, var, [do: contents]) do
     var      = Macro.escape(var)
     contents = Macro.escape(contents, unquote: true)
-    quote bind_quoted: binding do
+    quote bind_quoted: binding() do
       def unquote(:"prop_#{message}")(unquote(var)), do: unquote(contents)
       test :"#{message}_property", var do
         assert ExCheck.check(unquote(:"prop_#{message}")(var), var[:iterations])

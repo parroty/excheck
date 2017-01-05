@@ -10,7 +10,7 @@ defmodule ExCheck.ErrorAgentTest do
   end
 
   test "Adding and returning errors" do
-    me = self
+    me = self()
     other = spawn fn -> :ok end
     {:ok, agent} = ErrAgent.start_link
     # Errors could contain anything, using text for simplicity

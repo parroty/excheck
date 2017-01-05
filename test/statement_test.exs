@@ -8,13 +8,13 @@ defmodule ExCheck.StatementTest do
 
   test "verify succeeds" do
     assert verify_property(
-      for_all n in int, do: is_integer(n)
+      for_all n in int(), do: is_integer(n)
     )
   end
 
   test "verify fails" do
     assert verify_property(
-      for_all b in bool, do: is_integer(b)
+      for_all b in bool(), do: is_integer(b)
     ) == false
   end
 

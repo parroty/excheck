@@ -15,7 +15,7 @@ defmodule ExCheck do
 
       setup(context) do
         # Redirect all output first to IOServer process before test starts
-        ExCheck.IOServer.redirect(self)
+        ExCheck.IOServer.redirect(self())
         {:ok, context}
       end
     end
