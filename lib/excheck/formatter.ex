@@ -1,5 +1,5 @@
 defmodule ExCheck.Formatter do
-  use GenEvent
+  use GenServer
   alias ExUnit.CLIFormatter, as: CF
 
   @moduledoc """
@@ -12,14 +12,14 @@ defmodule ExCheck.Formatter do
   end
 
   @doc false
-  def handle_event(event = {:suite_finished, _run_us, _load_us}, config) do
-    updated_tests_count = update_tests_counter(config.tests_counter)
-    new_cfg = %{config | tests_counter: updated_tests_count}
+  def handle_cast(event = {:suite_finished, _run_us, _load_us}, config) do
+    updated_tests_count = update_tests_counter(config.test_counter)
+    new_cfg = %{config | test_counter: updated_tests_count}
     print_property_test_errors()
-    CF.handle_event(event, new_cfg)
+    CF.handle_cast(event, new_cfg)
   end
-  def handle_event(event, config) do
-    CF.handle_event(event, config)
+  def handle_cast(event, config) do
+    CF.handle_cast(event, config)
   end
 
   defp print_property_test_errors do
@@ -30,13 +30,13 @@ defmodule ExCheck.Formatter do
     end)
   end
 
-  defp update_tests_counter(tests_counter) when is_integer(tests_counter) do
-    total_tests = tests_counter + ExCheck.IOServer.total_tests
+  defp update_tests_counter(test_counter) when is_integer(test_counter) do
+    total_tests = test_counter + ExCheck.IOServer.total_tests
     ExCheck.IOServer.reset_test_count
     total_tests
   end
-  defp update_tests_counter(tests_counter) when is_map(tests_counter) do
-    total_tests = %{tests_counter | test: tests_counter.test + ExCheck.IOServer.total_tests}
+  defp update_tests_counter(test_counter) when is_map(test_counter) do
+    total_tests = %{test_counter | test: test_counter.test + ExCheck.IOServer.total_tests}
     ExCheck.IOServer.reset_test_count
     total_tests
   end
