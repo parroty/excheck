@@ -1,8 +1,7 @@
 defmodule ExCheck.Formatter do
-  @version Version.parse!(System.version)
-  @version140 %Version{major: 1, minor: 4, patch: 0}
+  @version140_or_later Version.compare(System.version, "1.4.0") in [:gt, :eq]
 
-  if @version >= @version140 do
+  if @version140_or_later do
     use GenServer
   else
     use GenEvent
@@ -22,7 +21,7 @@ defmodule ExCheck.Formatter do
     CF.init(opts)
   end
 
-  if @version >= @version140 do
+  if @version140_or_later do
 
     @doc false
     def handle_cast(event = {:suite_finished, _run_us, _load_us}, config) do
