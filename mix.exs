@@ -8,9 +8,9 @@ defmodule ExCheck.Mixfile do
       homepage_url: "https://github.com/parroty/ExCheck.git",
       version: "0.5.2",
       elixir: "~> 1.0",
-      deps: deps,
-      description: description,
-      package: package,
+      deps: deps(),
+      description: description(),
+      package: package(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test]
     ]

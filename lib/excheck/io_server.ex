@@ -64,7 +64,7 @@ defmodule ExCheck.IOServer do
 
   @doc false
   def handle_call({:redirect, pid}, _from, state = %State{pids: pids}) do
-    Process.group_leader(pid, self)  # redirect all IO from pid to this process
+    Process.group_leader(pid, self())  # redirect all IO from pid to this process
     {:reply, :ok, %State{state | pids: [pid | pids]}}
   end
   def handle_call(:total_tests, _from, state = %State{tests: tests}) do

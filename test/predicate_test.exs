@@ -4,7 +4,7 @@ defmodule ExCheck.PredicateTest do
   import ExUnit.CaptureIO
 
   property :implies do
-    for_all x in int do
+    for_all x in int() do
       implies x >= 0 do
         x >= 0
       end
@@ -12,13 +12,13 @@ defmodule ExCheck.PredicateTest do
   end
 
   property :such_that do
-    for_all {x, y} in such_that({xx, yy} in {int, int} when xx < yy) do
+    for_all {x, y} in such_that({xx, yy} in {int(), int()} when xx < yy) do
       x < y
     end
   end
 
   def prop_always_fail do
-    for_all x in int do
+    for_all x in int() do
       when_fail(:io.format("Failed value X = ~p", [x])) do
         false
       end
@@ -26,7 +26,7 @@ defmodule ExCheck.PredicateTest do
   end
 
   def prop_sometimes_fail do
-    for_all l in list(int) do
+    for_all l in list(int()) do
       implies l != [] do
         for_all i in elements(l) do
           when_fail(:io.format("Failed value L = ~p, I = ~p~n", [l,i])) do
@@ -39,18 +39,18 @@ defmodule ExCheck.PredicateTest do
 
   test "always fail property" do
     assert capture_io(fn ->
-      ExCheck.check(prop_always_fail)
+      ExCheck.check(prop_always_fail())
     end) =~ "Failed value X ="
   end
 
   test "sometimes fail property" do
     assert capture_io(fn ->
-      ExCheck.check(prop_sometimes_fail)
+      ExCheck.check(prop_sometimes_fail())
     end) =~ "Failed value L ="
   end
 
   property :trapexit do
-    for_all {xs, ys} in {list(int), list(int)} do
+    for_all {xs, ys} in {list(int()), list(int())} do
       trap_exit do
         Enum.reverse(Enum.concat(xs, ys)) ==
           Enum.concat(Enum.reverse(ys), Enum.reverse(xs))
@@ -69,7 +69,7 @@ defmodule ExCheck.PredicateTest do
   test "timeout fail property" do
     assert capture_io(fn ->
       assert_raise(ExCheck.Error, "check failed: {:EXIT, {:timeout, 100}}", fn ->
-        ExCheck.check(prop_timeout)
+        ExCheck.check(prop_timeout())
       end)
     end) =~ "{'EXIT',{timeout,100}}"
   end
@@ -79,7 +79,7 @@ defmodule ExCheck.PredicateTest do
   end
 
   def prop_exception do
-    for_all(_x, int) do
+    for_all(_x, int()) do
       raise %SampleError{message: "sample message"}
     end
   end
@@ -87,13 +87,13 @@ defmodule ExCheck.PredicateTest do
   test "exception fail property" do
     assert capture_io(fn ->
       assert_raise(ExCheck.Error, "error raised: (Elixir.ExCheck.PredicateTest.SampleError) sample message", fn ->
-        ExCheck.check(prop_exception)
+        ExCheck.check(prop_exception())
       end)
     end) =~ "Elixir.ExCheck.PredicateTest.SampleError"
   end
 
   property :excpetion do
-    for_all x in int do
+    for_all x in int() do
       try do
         abs(10 / x) <= 10
       rescue
