@@ -1,3 +1,8 @@
+0.5.3
+------
+#### Enhancements
+* Update to make with Elixir 1.4.0 (#35).
+
 0.5.2
 ------
 #### Changes
