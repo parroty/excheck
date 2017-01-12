@@ -3,9 +3,11 @@ defmodule ExCheck.ErrorAgent do
   Agent which stores errors untill all tests are finished.
   """
 
+  @initial_state %{}
+
   @doc "Start the agent and link it to the calling process."
   def start_link do
-    Agent.start_link fn -> %{} end
+    Agent.start_link fn -> @initial_state end
   end
 
   @doc "Saves an error message."
@@ -17,17 +19,15 @@ defmodule ExCheck.ErrorAgent do
   end
 
   @doc "Return all errors stored by this agent."
-  def errors(agent) do
-    agent |> Agent.get(fn(state) ->
-      state |> Enum.map(fn {_pid, errors} ->
-        Enum.reverse(errors)  # Errors are stored in reverse
-      end)
+  def flush_errors(agent) do
+    agent |> Agent.get_and_update(fn(state) ->
+      {
+        state |> Enum.map(fn {_pid, errors} ->
+          Enum.reverse(errors)  # Errors are stored in reverse
+        end),
+        @initial_state
+      }
     end)
-  end
-
-  @doc "Clears all errors stored by this agent."
-  def clear_errors(agent) do
-    agent |> Agent.update(fn(_) -> %{} end)
   end
 
   @doc "Stops the agent."
