@@ -50,7 +50,7 @@ defmodule ExCheck.Formatter do
   end
 
   defp print_property_test_errors do
-    ExCheck.IOServer.errors
+    ExCheck.IOServer.flush_errors
     |> List.flatten
     |> Enum.map(fn({msg, value_list}) ->
       :io.format(msg, value_list)
