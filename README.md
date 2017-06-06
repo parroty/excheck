@@ -99,7 +99,7 @@ defmodule ExCheck.Sample do
   Sample logic to be tested by ExCheck (refer to sample_test.exs for tests)
   """
 
-  @doc "concatinate the list"
+  @doc "concatenate the list"
   def concat(x, y) do
     x ++ y
   end
