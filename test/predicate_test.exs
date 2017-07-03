@@ -67,11 +67,9 @@ defmodule ExCheck.PredicateTest do
   end
 
   test "timeout fail property" do
-    assert capture_io(fn ->
-      assert_raise(ExCheck.Error, "check failed: {:EXIT, {:timeout, 100}}", fn ->
-        ExCheck.check(prop_timeout())
-      end)
-    end) =~ "{'EXIT',{timeout,100}}"
+    assert_raise(ExCheck.Error, ~r/check failed: {:EXIT, {:timeout, 100}}/, fn ->
+      ExCheck.check!(prop_timeout())
+    end)
   end
 
   defmodule SampleError do
@@ -85,11 +83,9 @@ defmodule ExCheck.PredicateTest do
   end
 
   test "exception fail property" do
-    assert capture_io(fn ->
-      assert_raise(ExCheck.Error, "error raised: (Elixir.ExCheck.PredicateTest.SampleError) sample message", fn ->
-        ExCheck.check(prop_exception())
-      end)
-    end) =~ "Elixir.ExCheck.PredicateTest.SampleError"
+    assert_raise(SampleError, "sample message", fn ->
+      ExCheck.check!(prop_exception())
+    end)
   end
 
   property :excpetion do
