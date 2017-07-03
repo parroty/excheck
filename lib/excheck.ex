@@ -30,7 +30,6 @@ defmodule ExCheck do
   def start(_app, _type) do
     import Supervisor.Spec, warn: false
     children = [
-      worker(ExCheck.IOServer, [])
     ]
     Supervisor.start_link(children, strategy: :one_for_one)
   end
