@@ -11,7 +11,7 @@ defmodule ExCheck.Statement do
     quote bind_quoted: binding() do
       def unquote(:"prop_#{message}")(), do: unquote(contents)
       test :"#{message}_property", context do
-        assert ExCheck.check(unquote(:"prop_#{message}")(), context[:iterations])
+        ExCheck.check!(unquote(:"prop_#{message}")(), context[:iterations])
       end
     end
   end
@@ -25,7 +25,7 @@ defmodule ExCheck.Statement do
     quote bind_quoted: binding() do
       def unquote(:"prop_#{message}")(unquote(var)), do: unquote(contents)
       test :"#{message}_property", var do
-        assert ExCheck.check(unquote(:"prop_#{message}")(var), var[:iterations])
+        ExCheck.check!(unquote(:"prop_#{message}")(var), var[:iterations])
       end
     end
   end

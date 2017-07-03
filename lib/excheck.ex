@@ -39,19 +39,27 @@ defmodule ExCheck do
   Check the property defined in the specified target (module or method).
   If the module name is specified, check all the methods prefixed with 'prop_'.
   """
-  def check(target, iterations \\ :nil) do
+  def check(target, iterations \\ nil) do
     default_iterations = Application.get_env(:excheck, :number_iterations, 100)
     case :triq.check(target, iterations || default_iterations) do
       true ->
-        true
+        :ok
       false ->
-        false
-      {:EXIT, %{__struct__: ExUnit.AssertionError} = error} ->
-        raise ExUnit.AssertionError, message: error.message
-      {:EXIT, %{__struct__: type, message: msg}} ->
-        raise ExCheck.Error, message: "error raised: (#{type}) #{msg}"
+        example = :triq.counterexample()
+        {:error, %ExCheck.Error{message: "check failed: Counterexample: #{inspect example}"}}
+      {:EXIT, %{__struct__: _, message: _} = e} ->
+        example = :triq.counterexample()
+        {:error, e}
       error ->
-        raise ExCheck.Error, message: "check failed: #{inspect error}"
+        example = :triq.counterexample()
+        {:error, %ExCheck.Error{message: "check failed: #{inspect error}. Counterexample: #{inspect example}"}}
+    end
+  end
+
+  def check!(target, iterations \\ nil) do
+    case check(target, iterations) do
+      :ok -> :ok
+      {:error, e} -> raise e
     end
   end
 end
