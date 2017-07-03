@@ -48,13 +48,9 @@ defmodule ExCheck.Formatter do
   end
 
   defp update_tests_counter(tests_counter) when is_integer(tests_counter) do
-    total_tests = tests_counter + ExCheck.IOServer.total_tests
-    ExCheck.IOServer.reset_test_count
-    total_tests
+    tests_counter + ExCheck.TriqAgent.get_tests_count
   end
   defp update_tests_counter(tests_counter) when is_map(tests_counter) do
-    total_tests = %{tests_counter | test: tests_counter.test + ExCheck.IOServer.total_tests}
-    ExCheck.IOServer.reset_test_count
-    total_tests
+    %{tests_counter | test: tests_counter.test + ExCheck.TriqAgent.get_tests_count}
   end
 end
