@@ -18,7 +18,10 @@ defmodule ExCheck.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [mod: {ExCheck, []}]
+    [
+      applications: [:triq],
+      mod: {ExCheck, []}
+    ]
   end
 
   # Returns the list of dependencies in the format:

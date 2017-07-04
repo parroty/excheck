@@ -23,7 +23,6 @@ defmodule ExCheck do
   def start do
     {:ok, :triq_rnd} = :triq_rand_compat.init('triq_rnd')
     ExUnit.configure(formatters: [ExCheck.Formatter])
-    Application.ensure_all_started(:excheck)
   end
 
   @doc "Starts the ExCheck application."
