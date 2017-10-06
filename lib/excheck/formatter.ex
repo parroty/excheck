@@ -62,6 +62,7 @@ defmodule ExCheck.Formatter do
     ExCheck.IOServer.reset_test_count
     total_tests
   end
+  defp update_tests_counter(%{}), do: %{}
   defp update_tests_counter(tests_counter) when is_map(tests_counter) do
     total_tests = %{tests_counter | test: tests_counter.test + ExCheck.IOServer.total_tests}
     ExCheck.IOServer.reset_test_count
