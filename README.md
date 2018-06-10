@@ -1,9 +1,7 @@
 # ExCheck [![Build Status](https://secure.travis-ci.org/parroty/excheck.svg?branch=master "Build Status")](http://travis-ci.org/parroty/excheck) [![Coverage Status](http://img.shields.io/coveralls/parroty/excheck.svg)](https://coveralls.io/r/parroty/excheck) [![Inline docs](http://inch-ci.org/github/parroty/excheck.svg?branch=master&style=flat)](http://inch-ci.org/github/parroty/excheck)
 
 Property-based testing for Elixir (QuickCheck style).
-It uses Erlang's [triq](https://github.com/krestenkrab/triq) library for underlying checking engine, and ExCheck's modules provide wrapper macros for ExUnit tests.
-
-Note: as of v0.5, `triqng/triq` is applied for fixing the issue #30.
+It uses Erlang's [triq](https://gitlab.com/triq/triq) library for underlying checking engine, and ExCheck's modules provide wrapper macros for ExUnit tests.
 
 ### Installation
 
@@ -12,8 +10,7 @@ First add ExCheck and triq to your project's dependencies in mix.exs.
 ```Elixir
   defp deps do
     [
-      {:excheck, "~> 0.5", only: :test},
-      {:triq, github: "triqng/triq", only: :test}
+      {:excheck, "~> 0.6", only: :test}
     ]
   end
 ```

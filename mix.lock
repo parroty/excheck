@@ -15,4 +15,4 @@
   "poison": {:hex, :poison, "2.2.0", "4763b69a8a77bd77d26f477d196428b741261a761257ff1cf92753a0d4d24a63", [:mix], []},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.0", "edee20847c42e379bf91261db474ffbe373f8acb56e9079acb6038d4e0bf414f", [:rebar, :make], []},
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5", "2e73e068cd6393526f9fa6d399353d7c9477d6886ba005f323b592d389fb47be", [:make], []},
-  "triq": {:git, "https://github.com/triqng/triq.git", "810eed84f66cc2596cf26ce731beed34ae3ed977", []}}
+  "triq": {:hex, :triq, "1.2.0", "3fbf99c16671f084b558f7e799e38d92835d67dcc012fb40d418330ea1053455", [:rebar3], []}}
