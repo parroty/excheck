@@ -1,6 +1,6 @@
 0.6.0
 ------
-#### Enhancements
+#### Changes
 * Triq dependency moved to gitlab (#45)
     - Update to use triq on hex.pm
 
